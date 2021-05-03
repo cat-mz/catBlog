@@ -1,0 +1,14 @@
+# 常量
+
+
+# 图片验证码有效期
+REDIS_IMAGES_CODE_TIMEOUT = 3000
+
+# 验证码IP地址
+SEND_ACTIVE_IP = 'http://127.0.0.1/'
+
+# 邮箱验证时间有效期
+SEND_EMAIL_ACTIVE_TIMEOUT = 3 * 60
+
+# 修改密码邮箱有效期
+SENED_EMAIL_CHANGE_PASSWOED_TIMEOUT = 5 * 60
