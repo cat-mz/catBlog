@@ -1,0 +1,96 @@
+main{
+  position: relative;
+  background-color: #9c27b0;
+}
+.login {
+  /* margin: 100px auto; */
+  height: 400px;
+  width: 300px;
+  background-color: pink;
+  border-radius: 10px;
+}
+.title {
+  width: 240px;
+  background-color: powderblue;
+  margin: 0 auto 0;
+  text-align: center;
+  height: 150px;
+  position: relative;
+  top: -60px;
+}
+.nav_title {
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  line-height: 60px;
+}
+main span {
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  background-color: violet;
+}
+
+.con {
+  position: relative;
+  top: -40px;
+}
+.con_title {
+  text-align: center;
+  font: normal 18px/36px '宋体';
+  color: #666;
+}
+.form-input {
+  font-size: 18px;
+  margin: 20px auto;
+  text-align: center;
+}
+.glyphicon {
+  font-size: 24px;
+  top: 7px;
+  margin-right: 10px;
+  color: white;
+}
+
+.form-input input,
+.form-input input:hover {
+  border-bottom: 2px solid rgba(102, 102, 102, 0.5);
+}
+
+.form-input input:focus {
+  border-bottom: 2px solid #9c27b0;
+}
+.btn{
+  background-color: #fff;
+}
+.btn:hover,
+.btn:focus,
+.btn.focus {
+  text-decoration: none;
+  cursor: auto;
+  background-color: white;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.but,
+.but:focus,
+.but:hover {
+  background-color: white;
+  border: 0px;
+  border-bottom-color: white;
+}
+
+footer{
+  position: absolute;
+  bottom: 0px;
+}

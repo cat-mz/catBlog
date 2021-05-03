@@ -1,0 +1,17 @@
+login.html  登陆
+register.html 注册
+forgetpassword.html 忘记密码验证(通过邮箱进行验证)
+changepassword.html  修改密码
+
+index.html 首页 
+
+detail.html /
+center.html /
+timeline.html 时间线
+about.html /
+
+writeblog.html ===> Yes
+使用admin页面进行写博客
+
+
+404.html  服务器404

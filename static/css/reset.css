@@ -1,0 +1,209 @@
+/* 将标签默认的间距设为0 */
+
+body,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+dl,
+dt,
+form,
+select,
+div,
+input {
+  margin: 0;
+  padding: 0;
+}
+/* 去掉小圆点 */
+ul {
+  list-style: none;
+}
+/* 下划线 */
+a {
+  text-decoration: none !important;
+  color: black;
+}
+a:hover {
+  color: lightcoral !important;
+}
+/* em标签不倾斜 */
+em {
+  font-style: normal;
+}
+/* 去掉在IE图片做链接生成边框 */
+img {
+  border: 0px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* 继承body特型字体大小 */
+  font-size: 100%;
+}
+/* 清除浮动、解决margin-top塌陷 */
+.clearfix::before,
+.clearfix::after {
+  content: "";
+  display: table;
+}
+.clearfix::after {
+  clear: both;
+}
+/* 解决IE的浮动、塌陷问题 */
+.clearfix {
+  zoom: 1;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+/* 字体颜色 */
+
+/* 背景颜色 */
+body {
+  background: rgba(200, 200, 200, 0.2);
+}
+/* 手势 */
+* {
+  cursor: url(../img/Aero_arrow.cur), auto !important;
+}
+:active {
+  cursor: url("../img/Aero_Helpsel.cur"), auto !important;
+}
+/* 顶部 */
+footer {
+  position: relative;
+  left: 0;
+  right: 0;
+  bottom: 0px;
+  background-color: lightblue;
+}
+
+/* base */
+
+/* 响应式 */
+@media (min-width: 300px) {
+  .container {
+    max-width: none;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  .f-17 {
+    font-size: 13px;
+  }
+  .f-16 {
+    font-size: 12px;
+  }
+  .f-15 {
+    font-size: 11px;
+  }
+  .f-14 {
+    font-size: 10px;
+  }
+  .f-13 {
+    font-size: 9px;
+  }
+  .f-12 {
+    font-size: 8px;
+  }
+}
+/* Small devices (landscape phones, 576px and up) */
+/* X-iPhone6 AND plus */
+@media (min-width: 576px) {
+  .container {
+    max-width: none;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  .f-17 {
+    font-size: 14px;
+  }
+  .f-16 {
+    font-size: 13px;
+  }
+  .f-15 {
+    font-size: 12px;
+  }
+  .f-14 {
+    font-size: 11px;
+  }
+  .f-13 {
+    font-size: 10px;
+  }
+  .f-12 {
+    font-size: 9px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+/* Y-iPad mini */
+@media (min-width: 768px) {
+  .container {
+    max-width: 750px;
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .f-17 {
+    font-size: 16px;
+  }
+  .f-16 {
+    font-size: 15px;
+  }
+  .f-15 {
+    font-size: 14px;
+  }
+  .f-14 {
+    font-size: 13px;
+  }
+  .f-13 {
+    font-size: 12px;
+  }
+  .f-12 {
+    font-size: 11px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+/* X-iPad Y-iPad Pro*/
+@media (min-width: 992px) {
+  .container {
+    max-width: 970px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+/* PC X-iPad Pro*/
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+  .f-17 {
+    font-size: 17px;
+  }
+  .f-16 {
+    font-size: 16px;
+  }
+  .f-15 {
+    font-size: 15px;
+  }
+  .f-14 {
+    font-size: 14px;
+  }
+  .f-13 {
+    font-size: 13px;
+  }
+  .f-12 {
+    font-size: 12px;
+  }
+}
