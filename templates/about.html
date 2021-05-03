@@ -1,0 +1,59 @@
+{% extends 'base_user.html' %}
+{% load static %}
+{% block title %}
+    about
+{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- 主体内容 -->
+                    {% load markdown_deux_tags %}
+
+                    <link rel="stylesheet" href="{% static 'css/github.css' %}">
+                    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+
+                    <div class="main_content bg-light mt-3 p-3 w-100">
+                        <p>{{ user | markdown }}</p>
+                    </div>
+                    <link rel="stylesheet" href="{% static 'css/top.css' %}">
+                    <!--top-->
+                    <span class="totop">↑</span>
+
+                </div>
+            </div>
+        </div>
+        <br>
+    </main>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="card-body text-center px-0 f-14">
+            <p class="card-text mb-1">Copyright&nbsp;&copy;&nbsp;<span id="year-info"></span>
+                <a href="https://github.com/cat-mz" target="_blank"
+                   title="博客作者的Github" style="color: black">CatMz</a>.&nbsp;Powered&nbsp;by&nbsp;Django.
+            </p>
+            <p class="mb-0">
+                <a href="http://beian.miit.gov.cn/" target="_blank" style="color: black">粤ICP备17114114号-3</a>&nbsp;
+
+                <span id="web-day"></span>
+            </p>
+            <script>function getnewYear() {
+                var d = new Date();
+                var old = new Date('2021/03/28');
+                var x = document.getElementById("year-info");
+                x.innerHTML = d.getFullYear();
+                var y = document.getElementById("web-day");
+                var dd = Math.floor((d.getTime() - old.getTime()) / (24 * 3600 * 1000));
+                var d_str = "| 网站已续航 " + dd + " 天";
+                y.innerHTML = d_str;
+            }
+
+            getnewYear()</script>
+        </div>
+    </footer>
+
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base_user.html' %}
+{% load static %}
+{% block title %}
+    article
+{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- 主体内容 -->
+                    <ul class="main_content">
+                        {% for article in articles %}
+                            <li class="media mb-1 p-2 bg-light  mb-sm-2 p-lg-3">
+                                <div class="align-self-center mr-2 mr-lg-3 w-25 modal-open">
+                                    <a href="/detail?id={{ article.id }}">
+                                        <img class="w-100 article-img" src="{{ article.picture.url }}"
+                                             alt="{{ article.title }}">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    {% if article.top %}
+                                        <img class="float-right top-article-img" src="{% static 'img/top.png' %}">
+                                    {% endif %}
+                                    <div class="text-muted mb-2 f-12">
+
+
+                                        <img class="avatar" src="{{ article.auther.avatar.url }}"
+                                             alt="{{ article.auther.username }}">
+
+                                        <span>{{ article.auther.username }}</span>
+                                        <span><i class="fa fa-calendar-times-o ml-2 mr-1"></i>{{ article.create_time }}</span>
+                                    </div>
+                                    <h2 class="mt-0 font-weight-bold text-info f-color f-17">
+                                        <a href="/detail?id={{ article.id }}"
+                                           class="f-color">{{ article.title }}</a>
+                                    </h2>
+                                    <p class="d-none d-sm-block mb-2 f-15 py-1">{{ article.sumary }}</p>
+                                    <div class="text-muted mb-0 f-12">
+                                        <a class="f-category" href="/category/{{ article.articletags_set.first }}/"
+                                           title="查看当前分类下更多文章">
+                                            <i class="fa fa-book mr-1"></i>{{ article.articletags_set.first }}</a>
+                                        <span><i class="fa fa-eye ml-2 mr-1"></i>{{ article.total_view }}</span>
+                                        <span><i class="fa fa-comments ml-2 mr-1"></i>{{ article.comment_count }}</span>
+                                    </div>
+                                </div>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                    <div class="text-center mt-2 mt-sm-1 mt-md-0 mb-3 f-16">
+                        {% if page.has_previous %}
+                            <!--判断是否为第二页,第二页直接请求首页,避免url携带page-->
+                            {% if page.previous_page_number == 1 %}
+                                <a class="text-success" href="{% url 'writer:index' %}">上一页</a>
+                            {% else %}
+                                <a class="text-success" href="?page={{ page.previous_page_number }}">上一页</a>
+                            {% endif %}
+                        {% else %}
+                            <span class="text-secondary" title="当前页已经是首页">上一页</span>
+                        {% endif %}
+
+
+                        <span class="mx-2">第&nbsp;{{ page.number }}&nbsp;/&nbsp;{{ page_total }}&nbsp;页</span>
+                        {% if page.has_next %}
+                            <a class="text-success" href="?page={{ page.next_page_number }}">下一页</a>
+                        {% else %}
+                            <span class="text-secondary" title="当前页已经是为最后一页">下一页</span>
+                        {% endif %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

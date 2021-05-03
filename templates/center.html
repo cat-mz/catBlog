@@ -1,0 +1,96 @@
+{% extends 'base_user.html' %}
+{% block title %}
+    center
+{% endblock %}
+{% load static %}
+{% block style %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 w-100 bg-light">
+                    <!-- 主体内容 -->
+                    <div class="p-5">
+                        <form method="post" enctype="multipart/form-data" action="{% url 'users:center' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="username">用户名</label>
+                                <input type="text" class="form-control" disabled="disabled" name="username"
+                                       value="{{ user.username }}">
+                            </div>
+
+                            <br>
+                            <div class="f-17">头像</div>
+
+                            {% if user.avatar.url %}
+                                <!--media 指定图片请求路由地址-->
+                                <img src="{{ user.avatar.url }}" style="max-width: 20%;">
+                            {% else %}
+                                <!--media 指定图片请求路由地址-->
+                                <h3>暂无用户头像</h3>
+                            {% endif %}
+
+
+                            <br>
+                            <div class="form-group">
+                                <label for="avatar">上传头像</label>
+                                <input type="file" class="form-control-file" name="avatar">
+                            </div>
+
+                            <!-- email -->
+                            <div class="form-group ">
+                                <label for="email">邮箱</label>
+                                <input type="email" class="form-control" disabled="disabled" name="email"
+                                       value="{{ user.email }}">
+                            </div>
+
+                            <!-- desc -->
+                            <div class="form-group ">
+                                <label for="desc">简介</label>
+                                <!-- 文本区域 -->
+                                <textarea type="text" class="form-control" name="desc" rows="12">
+                                        {{ user.user_desc }}
+                                    </textarea>
+                            </div>
+                            <!-- 提交按钮 -->
+                            <button type="submit" class="btn btn-primary" style="margin-left: 12px">修改</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+{% block footer %}
+    <footer>
+        <div class="card-body text-center px-0 f-14">
+            <p class="card-text mb-1">Copyright&nbsp;&copy;&nbsp;<span id="year-info"></span>
+                <a href="https://github.com/cat-mz" target="_blank"
+                   title="博客作者的Github">CatMz</a>.&nbsp;Powered&nbsp;by&nbsp;Django.
+            </p>
+            <p class="mb-0">
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备17114114号-3</a>&nbsp;
+
+                <span id="web-day"></span>
+            </p>
+            <script>function getnewYear() {
+                var d = new Date();
+                var old = new Date('2021/03/28');
+                var x = document.getElementById("year-info");
+                x.innerHTML = d.getFullYear();
+                var y = document.getElementById("web-day");
+                var dd = Math.floor((d.getTime() - old.getTime()) / (24 * 3600 * 1000));
+                var d_str = "| 网站已续航 " + dd + " 天";
+                y.innerHTML = d_str;
+            }
+
+            getnewYear()</script>
+        </div>
+    </footer>
+
+{% endblock %}

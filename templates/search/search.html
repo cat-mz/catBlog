@@ -1,0 +1,72 @@
+{% extends 'base_user.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block title %}
+    search
+{% endblock %}
+{% block main %}
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="center_about col-xs-12  w-100 mt-4 mb-5">
+                    <div class="bg-light w-100 p-3">
+                        <h1 class="f-17 font-weight-bolder">搜索&nbsp;<b>{{ query }}</b>&nbsp;结果如下：</h1>
+                    </div>
+                    <br>
+                    {% for item in page.object_list %}
+                        <ul class="main_content">
+                        <li class="media mb-1 p-2 bg-light  mb-sm-2 p-lg-3">
+                            <div class="align-self-center mr-2 mr-lg-3 w-25 modal-open">
+                                <a href="/detail?id={{ item.object.id }}">
+                                    <img class="w-100 item.object-img" src="{{ item.object.picture.url }}"
+                                         alt="{{ item.object.title }}">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                {% if item.object.top %}
+                                    <img class="float-right top-article-img" src="{% static 'img/top.png' %}">
+                                {% endif %}
+                                <div class="text-muted mb-2 f-12">
+
+
+                                    <img class="avatar" src="{{ item.object.auther.avatar.url }}"
+                                         alt="{{ item.object.auther.username }}">
+
+                                    <span>{{ item.object.auther.username }}</span>
+                                    <span><i
+                                            class="fa fa-calendar-times-o ml-2 mr-1"></i>{{ item.object.create_time }}</span>
+                                </div>
+                                <h2 class="mt-0 font-weight-bold text-info f-color f-17">
+                                    <a href="/detail?id={{ item.object.articletags_set.first.id }}"
+                                       class="f-color">{{ item.object.title }}</a>
+                                </h2>
+                                <p class="d-none d-sm-block mb-2 f-15 py-1">{{ item.object.sumary }}</p>
+                                <div class="text-muted mb-0 f-12">
+                                    <a class="f-category" href="/category/{{ item.object.articletags_set.first }}/"
+                                       title="查看当前分类下更多文章">
+                                        <i class="fa fa-book mr-1"></i>{{ item.object.articletags_set.first }}</a>
+                                    <span><i class="fa fa-eye ml-2 mr-1"></i>{{ item.object.total_view }}</span>
+                                    <span><i
+                                            class="fa fa-comments ml-2 mr-1"></i>{{ item.object.comment_count }}</span>
+                                </div>
+                            </div>
+                        </li>
+                    {% empty %}
+                        <div class="bg-light w-100 h-25 p-3">
+                            <h1 class=" ml-5">啥也没找到</h1>
+                        </div>
+
+                    {% endfor %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
+

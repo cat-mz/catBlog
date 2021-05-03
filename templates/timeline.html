@@ -1,0 +1,83 @@
+{% extends 'base_user.html' %}
+{% block title %}
+    timeline
+{% endblock %}
+
+{% block style %}
+    <style>
+        .center_about {
+            background-color: #fff;
+            width: 100%;
+        }
+
+        li a {
+            display: block;
+            color: var(--textColor);
+            transition: padding 0.3s;
+            padding: 0.5rem 2rem;
+            line-height: 1.2rem;
+        }
+
+        li span {
+            color: rgba(102, 102, 102, 0.726);
+        }
+
+        .con0 .con1 li a:hover {
+            padding-left: 2.5rem;
+            color: #11a8cd;
+            background: #f9f9f9;
+        }
+
+        h1 {
+            font-size: 26px !important;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="center_about col-xs-12  mt-4 mb-5">
+
+                    <div class="con0 ">
+                        <div class="con1 m-4  p-2 f-16">
+                            {% load static %}
+                            <script src="{% static 'js/love.js' %}"></script>
+                            <h1 class="f-17 font-weight-bolder"><img class="mr-2 mb-2" style="width: 5%"
+                                                                     src="{% static 'img/timeline.png' %}">归档</h1>
+
+                            <ul>
+
+                                <!--year-->
+                                {% for year in years %}
+                                    <li><!--先遍历年份-->
+                                        <h1 class="f-17 mt-3">{{ year }}</h1>
+                                        <hr class="mb-2 mt-2">
+                                    </li>
+                                    {% for article in articles %}
+                                        <!--年份再对比文章年份,一样就放进去-->
+                                        {% if year == article.create_time.year %}
+                                            <li>
+                                                <a href="/detail?id={{ article.id }}"><span>{{ article.create_time | date:'m-d' }}</span>
+                                                    {{ article.title }}
+                                                </a></li>
+                                        {% endif %}
+                                    {% endfor articles %}
+                                {% endfor years %}
+                                <!---->
+
+
+                            </ul>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+

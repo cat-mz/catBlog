@@ -1,0 +1,107 @@
+{% extends 'base_user.html' %}
+{% load static %}
+{% block title %}
+    login
+{% endblock %}
+{% block style %}
+    <style>
+        .center_login {
+            height: 380px;
+            width: 300px;
+            background-color: lightgray;
+            left: 0;
+            right: 0;
+            top: 100px;
+        }
+
+        .center_title {
+            width: 240px;
+            height: 160px;
+            background-color: lightyellow;
+            top: -80px;
+            left: 0;
+            right: 0;
+            font-size: 30px;
+        }
+
+        .gradient-text-one {
+            background-image: -webkit-linear-gradient(bottom, red, Olive, yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        a {
+            color: black;
+        }
+
+        h1 {
+            color: lightgoldenrodyellow;
+        }
+    </style>
+{% endblock %}
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="center_login  m-auto position-relative rounded fixed-bottom">
+                    <div class="center_title m-auto position-absolute">
+                        <div class="py-4 text-center gradient-text-one text-capitalize">
+                            <h1><strong>login</strong></h1>
+                        </div>
+                        <div class="text-center mt-2">
+                            <a href="{% url 'social:begin' 'github' %}" title="使用github账号登陆"><i class="fa fa-github"
+                                                                                                aria-hidden="true"></i></a>
+                            <a href="{% url 'social:begin' 'qq' %}" title="使用QQ账号登陆"><i class="fa fa-qq  pr-3 pl-3"
+                                                                                        aria-hidden="true"></i></a>
+                            <a href="{% url 'social:begin' 'weibo' %}" title="使用WeiBo账号登陆"><i class="fa fa-weibo "
+                                                                                              aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                    <div class="center_form mt-5 ">
+                        <h1 class="text-center py-5 f-17">欢迎来到CatMz的博客登陆页面</h1>
+                        <form action="{% url 'users:login' %}" class="text-center form-login" method="post">
+                            {% csrf_token %}
+                            <div class="form-input">
+                                <i class="fa fa-user-secret fa-lg mr-2"></i>
+                                {% if username %}
+                                    <input id="username" type="text" class="btn bg-light btn-default mr-1"
+                                           placeholder="请输入用户名"
+                                           name="username" value="{{ username }}">
+                                {% else %}
+                                    <input id="username" type="text" class="btn bg-light btn-default mr-1"
+                                           placeholder="请输入用户名"
+                                           name="username">
+                                {% endif %}
+                            </div>
+                            <div class="form-input mr-2">
+                                <i class="fa fa-key fa-lg  mr-2 mt-4"></i>
+                                <input id="password" type="password" class="btn bg-light btn-default"
+                                       placeholder="请输入密码"
+                                       name="password">
+                            </div>
+                            <div class="form-input  mr-2 mt-2 text-left ml-5 ">
+                                {% if checked %}
+                                    <input value="on" name="btn" id="btn" type="checkbox"
+                                           class="btn bg-light btn-default">
+                                    <label for="btn">记住密码</label>
+                                {% else %}
+                                    <input name="btn" id="btn" type="checkbox"
+                                           class="btn bg-light btn-default">
+                                    <label for="btn">记住密码</label>
+                                {% endif %}
+                            </div>
+                            <div class="form-input">
+                                <button class="btn btn-info mt-1 submit">登陆</button>
+                            </div>
+                        </form>
+                        <ul>
+                            <li class="float-left ml-3 "><a href="{% url 'users:forgetpassword' %}">忘记密码</a></li>
+                            <li class="float-right mr-3 "><a href="{% url 'users:register' %}">注册页面</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+

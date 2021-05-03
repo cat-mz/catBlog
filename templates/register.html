@@ -1,0 +1,112 @@
+{% extends 'base_user.html' %}
+{% load static %}
+{% block title %}
+    register
+{% endblock %}
+{% block style %}
+    <style>
+        .center_login {
+            height: 500px;
+            width: 600px;
+            background-color: lightgray;
+            left: 0;
+            right: 0;
+            top: 80px;
+        }
+
+        .center_title {
+            width: 240px;
+            height: 160px;
+            background-color: lightyellow;
+            top: -80px;
+            left: 0;
+            right: 0;
+            font-size: 30px;
+        }
+
+        .gradient-text-one {
+            background-image: -webkit-linear-gradient(bottom, red, Olive, yellow);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        a {
+            color: black;
+        }
+
+        h1 {
+            color: black;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="center_login  m-auto position-relative rounded fixed-bottom">
+                    <div class="center_title m-auto position-absolute">
+                        <div class="py-4 text-center gradient-text-one text-capitalize">
+                            <h1><strong>register</strong></h1>
+                            <h1 class="text-center py-5 f-17">欢迎来到CatMz的博客注册页面</h1>
+                        </div>
+
+
+                    </div>
+                    <div class="center_form py-5 mt-5 ">
+                        <script src="{% static 'js/register.js' %}"></script>
+                        <form action="{% url 'users:register' %}" method="post" class="text-center ml-3 form-register">
+                            {% csrf_token %}
+                            <div class="form-input">
+                                <i class="fa fa-user-secret fa-lg mr-2"></i>
+                                <input type="text" class="btn bg-light btn-default mr-1" placeholder="请输入用户名"
+                                       name="username" id="username">
+                                <a href="" class="ml-3 invisible"><img src="{% static 'img/code.jpg' %}"
+                                                                       class="w-25"></a>
+                            </div>
+                            <div class="form-input mr-2">
+
+                                <i class="fa fa-key fa-lg  mr-2 mt-4"></i>
+                                <input type="password" class="btn bg-light btn-default" placeholder="请输入密码"
+                                       name="password" id="password">
+                                <a href="" class="ml-3 invisible"><img src="{% static 'img/code.jpg' %}"
+                                                                       class="w-25"></a>
+                            </div>
+                            <div class="form-input mr-2">
+                                <i class="fa fa-key fa-lg mr-2 mt-4"></i>
+                                <input type="password" class="btn bg-light btn-default" id="password2" name="password2"
+                                       placeholder="请再次输入密码">
+                                <a href="" class="ml-3 invisible"><img src="{% static 'img/code.jpg' %}"
+                                                                       class="w-25"></a>
+                            </div>
+                            <div class="form-input">
+                                <i class="fa fa-envelope fa-lg mr-2 mt-4"></i>
+                                <input type="email" class="btn bg-light btn-default mr-2" id="email" name="email"
+                                       placeholder="请填写正确的邮箱信息">
+                                <a href="" class="ml-3 invisible"><img src="{% static 'img/code.jpg' %}"
+                                                                       class="w-25"></a>
+                            </div>
+                            <div class="form-input">
+                                <input type="text" hidden name="uuid" id="uuuid">
+                                <i class="fa fa-file-code-o fa-lg mr-2 mt-4"></i>
+                                <input type="text" class="btn bg-light btn-default mr-2" id="code" name="code"
+                                       placeholder="请填写图片验证码">
+                                <a href="javascript:;" class="ml-3 code"><img id="code_img" src=""
+                                                                              class="w-25"></a>
+                            </div>
+                            <div class="form-input">
+                                <button class="btn btn-info mt-4">注册</button>
+                            </div>
+                        </form>
+                        <ul class="mr-4 ml-4">
+                            <li class="float-left ml-3 "><a href="{% url 'users:forgetpassword' %}">忘记密码</a></li>
+                            <li class="float-right mr-3 "><a href="{% url 'users:login' %}">登陆页面</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
+
+
