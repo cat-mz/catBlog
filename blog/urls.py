@@ -1,0 +1,51 @@
+"""blog URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path, include, re_path
+from django.views.static import serve
+from .settings import MEDIA_ROOT
+from django.conf.urls import url
+
+from django.views import static  ##新增
+from django.conf import settings  ##新增
+from django.conf.urls import url  ##新增
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('user/', include(('apps.users.urls', 'apps.users'), namespace='users')),
+    path('', include(('apps.writer.urls', 'apps.writer'), namespace='writer')),
+    path('auth/', include(('apps.qauth.urls', 'apps.qauth'), namespace='auth')),
+    # 以下代码为设置图片访问路由规则
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    #     第三方登录配置
+    url('', include(('social_django.urls', 'social_django'), namespace='social')),
+    # 搜索
+    path('search/', include(('haystack.urls', 'haystack'), namespace='search')),
+    # static
+    # url(r'^static/(?P<path>.*)$', static.serve,
+    #     {'document_root': settings.STATIC_ROOT}, name='static'),
+]
+# 404 html
+from apps.users import views
+handler404 = views.page_not_found
+
+'''
+https://github.com/login/oauth/authorize?
+client_id=143d93b1d5d93cbf5d420b25ed791cfa0ab55d01&
+redirect_uri=http://localhost:8000/complete/github/&
+state=btH5H7CudzMLvo1RAz5ooEeFVLXhMFJ9&
+response_type=code
+'''
